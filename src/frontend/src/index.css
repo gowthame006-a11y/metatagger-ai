@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    /* Dark tech theme - always dark */
+    --background: 0.09 0.018 245;
+    --foreground: 0.95 0.018 240;
+    --card: 0.14 0.024 242;
+    --card-foreground: 0.95 0.018 240;
+    --popover: 0.16 0.026 242;
+    --popover-foreground: 0.95 0.018 240;
+    --primary: 0.56 0.198 262;
+    --primary-foreground: 0.98 0.005 240;
+    --secondary: 0.19 0.032 242;
+    --secondary-foreground: 0.95 0.018 240;
+    --muted: 0.16 0.026 242;
+    --muted-foreground: 0.63 0.028 240;
+    --accent: 0.75 0.13 192;
+    --accent-foreground: 0.09 0.018 245;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.95 0.01 240 / 10%;
+    --input: 0.95 0.01 240 / 12%;
+    --ring: 0.56 0.198 262;
+    --chart-1: 0.56 0.198 262;
+    --chart-2: 0.75 0.13 192;
+    --chart-3: 0.7 0.18 150;
+    --chart-4: 0.7 0.2 60;
+    --chart-5: 0.65 0.22 30;
+    --sidebar: 0.12 0.022 243;
+    --sidebar-foreground: 0.95 0.018 240;
+    --sidebar-primary: 0.56 0.198 262;
+    --sidebar-primary-foreground: 0.98 0.005 240;
+    --sidebar-accent: 0.19 0.032 242;
+    --sidebar-accent-foreground: 0.95 0.018 240;
+    --sidebar-border: 0.95 0.01 240 / 10%;
+    --sidebar-ring: 0.56 0.198 262;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    background-image: radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        oklch(0.56 0.198 262 / 0.18) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 40% 30% at 80% 60%,
+        oklch(0.75 0.13 192 / 0.07) 0%,
+        transparent 50%
+      );
+    background-attachment: fixed;
+  }
+}
+
+/* Grid pattern overlay */
+.grid-pattern {
+  background-image: linear-gradient(
+      oklch(0.95 0.01 240 / 0.04) 1px,
+      transparent 1px
+    ), linear-gradient(90deg, oklch(0.95 0.01 240 / 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glow utilities */
+.glow-blue {
+  box-shadow: 0 0 40px oklch(0.56 0.198 262 / 0.35), 0 0 80px
+    oklch(0.56 0.198 262 / 0.15);
+}
+.glow-teal {
+  box-shadow: 0 0 30px oklch(0.75 0.13 192 / 0.4);
+}
+.text-glow-blue {
+  text-shadow: 0 0 30px oklch(0.56 0.198 262 / 0.6);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    oklch(0.85 0.05 240),
+    oklch(0.56 0.198 262),
+    oklch(0.75 0.13 192)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px oklch(0.56 0.198 262 / 0.2);
+}
+
+/* Circular progress */
+@keyframes spin-progress {
+  from {
+    stroke-dashoffset: 283;
+  }
+  to {
+    stroke-dashoffset: var(--target-offset);
+  }
+}
+.progress-ring-animate {
+  animation: spin-progress 1.2s ease-out forwards;
+}
